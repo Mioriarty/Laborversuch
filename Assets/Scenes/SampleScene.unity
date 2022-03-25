@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab773d4e5470a7748bafcf04cc0d7d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 5
 --- !u!212 &467674316
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   focus: {fileID: 467674317}
-  stickiness: 10
+  stickiness: 7
 --- !u!1 &1094778159
 GameObject:
   m_ObjectHideFlags: 0
