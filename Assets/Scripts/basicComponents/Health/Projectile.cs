@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
     private int countAllreadyHitEnemies = 0;
 
     [Header("Movement")]
-    [SerializeField] private Vector2 direction;
+    [SerializeField] public Vector2 direction;
     [SerializeField] private float range;
     [SerializeField] private bool infiniteRange;
 
@@ -39,6 +39,7 @@ public class Projectile : MonoBehaviour
         // Check if it is a hittable enemy
         if(canDealDamageLayers == (canDealDamageLayers | (1 << collision.gameObject.layer))) {
             Health health = collision.GetComponent<Health>();
+
 
             if(health != null) {
                 health.ChangeHealth(-damage);
