@@ -6,8 +6,7 @@ using UnityEngine.AI;
 namespace BehaviourTrees {
 
     // Derive From this class to create custom Context variables
-    public class Context : ScriptableObject {
-        [HideInInspector] public GameObject gameObject;
+    public class Context : MonoBehaviour {
         
     }
 }

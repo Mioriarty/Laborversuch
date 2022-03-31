@@ -48,6 +48,7 @@ MonoBehaviour:
   children:
   - {fileID: 6402316061889451186}
   - {fileID: -2247863421084346560}
+  - {fileID: 9149827922719997413}
   - {fileID: -4755641854017797634}
 --- !u!114 &-4755641854017797634
 MonoBehaviour:
@@ -181,10 +182,10 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 91e88d93d6cccd04e85c928910ad0e3e
-  position: {x: 0, y: 0}
+  position: {x: 166, y: 312}
   context: {fileID: 0}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
-  message: 
+  message: Arrived

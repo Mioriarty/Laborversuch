@@ -437,6 +437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 472738194}
   - component: {fileID: 472738193}
+  - component: {fileID: 472738201}
   - component: {fileID: 472738196}
   - component: {fileID: 472738195}
   - component: {fileID: 472738199}
@@ -461,7 +462,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: d57c58d34096e024298e88ac6333e021, type: 2}
-  context: {fileID: 11400000, guid: 78c35d33efdc54446966b77f26dce3bf, type: 2}
 --- !u!4 &472738194
 Transform:
   m_ObjectHideFlags: 0
@@ -557,8 +557,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 467674317}
   speed: 2
-  pickNextWaypointDistance: 3
-  pathRefreshRate: 0.25
+  pickNextWaypointDistance: 0.1
+  pathRefreshRate: 0.5
+--- !u!114 &472738201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472738192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40763b8abdbc9264e8ff89cfb16e66f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 467674317}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,7 +2462,7 @@ MonoBehaviour:
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:

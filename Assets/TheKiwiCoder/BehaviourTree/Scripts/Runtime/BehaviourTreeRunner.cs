@@ -8,15 +8,14 @@ namespace BehaviourTrees {
         // The main behaviour tree asset
         public BehaviourTree tree;
 
-        // Storage container object to hold game object subsystems
-        public Context context;
-
         // Start is called before the first frame update
         void Start() {
+            Context context = GetComponent<Context>();
             if(context == null)
-                context = new Context();
+                context = gameObject.AddComponent<Context>();
+            
+            Debug.Log(context);
 
-            context.gameObject = gameObject;
             tree = tree.Clone();
             tree.Bind(context);
         }

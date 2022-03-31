@@ -52,19 +52,16 @@ public class FollowTarget : MonoBehaviour
     void Update() {
         if(path == null)
             return;
-        
-
-        if(currentWaypoint >= path.vectorPath.Count) {
-            this.path = null;
-            return;
-        }
-
 
         Vector2 dir = (Vector2) path.vectorPath[currentWaypoint] - rb.position;
         rb.velocity = dir.normalized * speed;
 
         if(dir.sqrMagnitude <= pickNextWaypointDistance * pickNextWaypointDistance)
             currentWaypoint++;
+        
+        if(currentWaypoint >= path.vectorPath.Count)
+            this.path = null;
+        
 
     }
 }
