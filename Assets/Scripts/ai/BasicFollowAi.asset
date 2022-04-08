@@ -61,7 +61,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: fcd4e7feabeb0cc4fbd9ecb2a1f8d82c
-  position: {x: -150.99988, y: -142.99998}
+  position: {x: -151.00008, y: -142.99998}
   context: {fileID: 0}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}

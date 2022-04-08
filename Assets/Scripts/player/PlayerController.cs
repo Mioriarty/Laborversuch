@@ -8,26 +8,32 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float dashDuration = 0.3f;
     private float dashStartTime = -10f;
-    private Vector2 dashDirection;
+    private Vector3 dashDirection;
 
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     private Animator animator;
+    private MeleeWeaponHandler meleeWeaponHandler;
+
+    private Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.rb = GetComponent<Rigidbody2D>();
-        this.animator = GetComponent<Animator>();
+        this.rb = GetComponent<Rigidbody>();
+        this.animator = GetComponentInChildren<Animator>();
+        this.meleeWeaponHandler = GetComponent<MeleeWeaponHandler>();
+        this.cam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Handle movement
         bool isDashing = dashStartTime + dashDuration >= Time.time;
-        Vector2 desiredMovementDirection = Vector3.zero;
-        Vector2 inputVec = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        Vector3 desiredMovementDirection = Vector3.zero;
+        Vector3 inputVec = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
-        if(!isDashing && inputVec != Vector2.zero && Input.GetKeyDown(KeyCode.Space)) {
+        if(!isDashing && inputVec != Vector3.zero && Input.GetKeyDown(KeyCode.Space)) {
             dashStartTime = Time.time;
             isDashing = true;
             dashDirection = inputVec;
@@ -44,5 +50,16 @@ public class PlayerController : MonoBehaviour
 
         this.animator.SetBool("isMoving", desiredMovementDirection.sqrMagnitude > 0.001f);
         this.animator.SetFloat("angle", Vector2.SignedAngle(desiredMovementDirection, Vector2.up));
+
+        // Handle Clicking
+        if(Input.GetMouseButtonDown(0)) {
+            Ray mouseRay = this.cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit raycastHit;
+            if(Physics.Raycast(mouseRay, out raycastHit, 100, LayerMask.GetMask("Ground"))) {
+                // deal damage in this direction
+                this.meleeWeaponHandler.Hit((raycastHit.point - transform.position).normalized);
+                
+            }
+        }
     }
 }

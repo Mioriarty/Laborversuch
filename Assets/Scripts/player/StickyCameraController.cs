@@ -13,7 +13,7 @@ public class StickyCameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.transform.position = new Vector3(focus.position.x, focus.position.y, this.transform.position.z);
+        this.transform.position = focus.position;
     }
 
     // Update is called once per frame
@@ -25,7 +25,6 @@ public class StickyCameraController : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 moveDir = focus.position - this.transform.position;
-        moveDir.z = 0;
 
         this.transform.Translate(moveDir * this.stickiness * Time.fixedDeltaTime);
     }

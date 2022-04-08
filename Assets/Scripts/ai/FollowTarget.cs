@@ -7,7 +7,7 @@ public class FollowTarget : MonoBehaviour
 {
     public Transform target;
     public float speed;
-    public float pickNextWaypointDistance = 3f;
+    public float pickNextWaypointDistance = 0.1f;
 
     public float pathRefreshRate = .5f;
 
@@ -15,12 +15,14 @@ public class FollowTarget : MonoBehaviour
     int currentWaypoint = 0;
 
     private Seeker seeker;
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     private bool shouldStop = false;
 
     void Start() {
         seeker = GetComponent<Seeker>();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
+
+        StartFollowing();
     }
 
     public void StartFollowing() {
@@ -50,10 +52,13 @@ public class FollowTarget : MonoBehaviour
     }
 
     void Update() {
-        if(path == null)
+        if(path == null) {
+            rb.velocity = (target.position - transform.position).normalized * speed;
             return;
+        }
 
-        Vector2 dir = (Vector2) path.vectorPath[currentWaypoint] - rb.position;
+        Vector3 dir = path.vectorPath[currentWaypoint] - rb.position;
+        dir.y = 0;
         rb.velocity = dir.normalized * speed;
 
         if(dir.sqrMagnitude <= pickNextWaypointDistance * pickNextWaypointDistance)
